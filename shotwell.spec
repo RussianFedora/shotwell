@@ -34,6 +34,7 @@ them, and share them with others.
 %build
 ./configure --prefix=/usr
 sed -i -e 's/\\n/\n/g' configure.mk
+sed -i -e 's/^CFLAGS = .*$/CFLAGS=%{optflags}/' Makefile
 make %{?_smp_mflags}
 
 
