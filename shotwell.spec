@@ -1,6 +1,6 @@
 Name:           shotwell
 Version:        0.2.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -73,6 +73,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Aug 20 2009 Michel Salim <salimma@fedoraproject.org> - 0.2.0-3
+- Rebuild against new libgee
+
 * Sun Aug 12 2009  Matthias Clasen <mclasen@redhat.com> - 0.2.0-2.fc12
 - Bring icon cache handling in sync with current guidelines
 
