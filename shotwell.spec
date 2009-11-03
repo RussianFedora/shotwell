@@ -16,6 +16,7 @@ Patch1:		desktopfile.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  gtk2-devel
+BuildRequires:  GConf2-devel
 BuildRequires:  sqlite-devel
 BuildRequires:  vala-devel
 BuildRequires:  libgee-devel
