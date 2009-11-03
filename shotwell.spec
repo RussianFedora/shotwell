@@ -26,6 +26,7 @@ BuildRequires:  unique-devel
 BuildRequires:  libexif-devel
 BuildRequires:  libgphoto2-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:  gettext
 
 
 %description
