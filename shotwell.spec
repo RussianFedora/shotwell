@@ -8,7 +8,7 @@ Group:          Applications/Multimedia
 # CC-BY-SA for some of the icons
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
-Source0:        http://www.yorba.org/download/shotwell/0.3/shotwell-0.3.0.tar.bz2
+Source0:        http://www.yorba.org/download/shotwell/0.3/shotwell-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
