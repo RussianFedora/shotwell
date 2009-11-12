@@ -1,6 +1,6 @@
 Name:           shotwell
 Version:        0.3.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -25,6 +25,7 @@ BuildRequires:  libgphoto2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 
+Patch0: prefixly-correct.patch
 
 %description
 Shotwell is a new open source photo organizer designed for the GNOME desktop
@@ -33,6 +34,7 @@ them, and share them with others.
 
 %prep
 %setup -q
+%patch0 -p1 -b .prefixly-correct
 
 %build
 ./configure --prefix=/usr
