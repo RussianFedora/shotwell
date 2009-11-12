@@ -1,5 +1,5 @@
 Name:           shotwell
-Version:        0.3.0
+Version:        0.3.2
 Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
@@ -9,9 +9,6 @@ Group:          Applications/Multimedia
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
 Source0:        http://www.yorba.org/download/shotwell/0.3/shotwell-0.3.0.tar.bz2
-
-Patch0:		gconftool.patch
-Patch1:		desktopfile.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -36,8 +33,6 @@ them, and share them with others.
 
 %prep
 %setup -q
-%patch0 -p1 -b .gconftool
-%patch1 -p1 -b .desktopfile
 
 %build
 ./configure --prefix=/usr
@@ -48,10 +43,9 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+export XDG_DISABLE_MAKEFILE_UPDATES=1
 make install DESTDIR=$RPM_BUILD_ROOT
-install -D misc/shotwell.schemas $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/shotwell.schemas
 
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/shotwell.desktop
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/shotwell-viewer.desktop
@@ -101,6 +95,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Nov 12 2009 Matthias Clasen <mclasen@redhat.com> - 0.3.2-1
+- Update to 0.3.2
+
 * Tue Nov  3 2009 Matthias Clasen <mclasen@redhat.com> - 0.3.0-1
 - Version 0.3.0
 
