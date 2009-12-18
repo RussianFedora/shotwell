@@ -1,6 +1,8 @@
+%define alphatag 20091218svn
+
 Name:           shotwell
-Version:        0.3.2
-Release:        2%{?dist}
+Version:        0.4.0
+Release:        0.1.%{alphatag}%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -8,7 +10,9 @@ Group:          Applications/Multimedia
 # CC-BY-SA for some of the icons
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
-Source0:        http://www.yorba.org/download/shotwell/0.3/shotwell-%{version}.tar.bz2
+#Source0:        http://www.yorba.org/download/shotwell/0.3/shotwell-%{version}.tar.bz2
+# svn co svn://svn.yorba.org/shotwell/branches/shotwell-0.4, make dist
+Source:         shotwell-0.4.0+branch.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -33,11 +37,11 @@ environment. It allows you to import photos from your camera, view and edit
 them, and share them with others.
 
 %prep
-%setup -q
-%patch0 -p1 -b .prefixly-correct
+%setup -q -n shotwell-0.4.0+branch
+#%patch0 -p1 -b .prefixly-correct
 
 %build
-./configure --prefix=/usr
+./configure --prefix=/usr --disable-schemas-install
 sed -i -e 's/\\n/\n/g' configure.mk
 sed -i -e 's/^CFLAGS=.*$/CFLAGS=%{optflags}/' Makefile
 make %{?_smp_mflags}
@@ -97,6 +101,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Fri Dec 18 2009 Matthias Clasen <mclasen@redhat.com> - 0.4.0-0.1.20091218svn
 * Thu Nov 12 2009 Matthias Clasen <mclasen@redhat.com> - 0.3.2-1
 - Update to 0.3.2
 
