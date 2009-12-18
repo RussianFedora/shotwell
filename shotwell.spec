@@ -26,6 +26,7 @@ BuildRequires:  dbus-glib-devel
 BuildRequires:  unique-devel
 BuildRequires:  libexif-devel
 BuildRequires:  libgphoto2-devel
+BuildRequires:  webkit-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 
