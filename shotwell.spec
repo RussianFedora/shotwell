@@ -1,7 +1,5 @@
-%define alphatag 20091218svn
-
 Name:           shotwell
-Version:        0.4.0
+Version:        0.4.1
 Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
@@ -97,6 +95,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Jan  2 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.1-1
+- Update to 0.4.1
+
 * Wed Dec 23 2009 Matthias Clasen <mclasen@redhat.com> - 0.4.0-1
 - Update to 0.4.0
 
