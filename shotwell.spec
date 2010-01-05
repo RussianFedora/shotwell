@@ -1,5 +1,5 @@
 Name:           shotwell
-Version:        0.4.1
+Version:        0.4.2
 Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
@@ -13,7 +13,7 @@ Source0:        http://www.yorba.org/download/shotwell/0.4/shotwell-%{version}.t
 BuildRequires:  gtk2-devel
 BuildRequires:  GConf2-devel
 BuildRequires:  sqlite-devel
-BuildRequires:  vala-devel
+BuildRequires:  vala-devel >= 0.7.9
 BuildRequires:  libgee-devel
 BuildRequires:  hal-devel
 BuildRequires:  dbus-glib-devel
@@ -23,8 +23,6 @@ BuildRequires:  libgphoto2-devel
 BuildRequires:  webkitgtk-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-
-Patch0: prefixly-correct.patch
 
 %description
 Shotwell is a new open source photo organizer designed for the GNOME desktop
@@ -95,8 +93,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Sat Jan  2 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.1-1
-- Update to 0.4.1
+* Tue Jan  5 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.2-1
+- Update to 0.4.2
 
 * Wed Dec 23 2009 Matthias Clasen <mclasen@redhat.com> - 0.4.0-1
 - Update to 0.4.0
