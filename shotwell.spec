@@ -1,6 +1,6 @@
 Name:           shotwell
-Version:        0.3.2
-Release:        3%{?dist}
+Version:        0.4.2
+Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -8,24 +8,21 @@ Group:          Applications/Multimedia
 # CC-BY-SA for some of the icons
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
-Source0:        http://www.yorba.org/download/shotwell/0.3/shotwell-%{version}.tar.bz2
-
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source0:        http://www.yorba.org/download/shotwell/0.4/shotwell-%{version}.tar.bz2
 
 BuildRequires:  gtk2-devel
 BuildRequires:  GConf2-devel
 BuildRequires:  sqlite-devel
-BuildRequires:  vala-devel
+BuildRequires:  vala-devel >= 0.7.9
 BuildRequires:  libgee-devel
 BuildRequires:  hal-devel
 BuildRequires:  dbus-glib-devel
 BuildRequires:  unique-devel
 BuildRequires:  libexif-devel
 BuildRequires:  libgphoto2-devel
+BuildRequires:  webkitgtk-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
-
-Patch0: prefixly-correct.patch
 
 %description
 Shotwell is a new open source photo organizer designed for the GNOME desktop
@@ -34,13 +31,11 @@ them, and share them with others.
 
 %prep
 %setup -q
-%patch0 -p1 -b .prefixly-correct
 
 %build
-./configure --prefix=/usr
+./configure --prefix=/usr --disable-schemas-install
 sed -i -e 's/\\n/\n/g' configure.mk
 sed -i -e 's/^CFLAGS=.*$/CFLAGS=%{optflags}/' Makefile
-sed -i -e 's/-mfpmath=sse -march=nocona//' Makefile
 make %{?_smp_mflags}
 
 
@@ -98,6 +93,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Jan  12 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.2-1
+- Update to 0.4.2
+
 * Wed Dec  9 2009 Peter Robinson <pbrobinson@gmail.com> - 0.3.2-2
 - Drop x86 specific CFLAGS optimisations
 
