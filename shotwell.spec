@@ -1,5 +1,5 @@
 Name:           shotwell
-Version:        0.4.2
+Version:        0.4.3
 Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
@@ -35,7 +35,7 @@ them, and share them with others.
 %build
 ./configure --prefix=/usr --disable-schemas-install
 sed -i -e 's/\\n/\n/g' configure.mk
-sed -i -e 's/^CFLAGS = .*$/CFLAGS = %{optflags}/' Makefile
+sed -i -e 's/^CFLAGS=.*$/CFLAGS=%{optflags}/' Makefile
 make %{?_smp_mflags}
 
 
@@ -93,11 +93,17 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Thu Jan  12 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.2-1
+* Mon Jan 18 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.3-1
+- Update to 0.4.3
+
+* Tue Jan  5 2010 Matthias Clasen <mclasen@redhat.com> - 0.4.2-1
 - Update to 0.4.2
 
-* Wed Dec  9 2009 Peter Robinson <pbrobinson@gmail.com> - 0.3.2-2
-- Drop x86 specific CFLAGS optimisations
+* Wed Dec 23 2009 Matthias Clasen <mclasen@redhat.com> - 0.4.0-1
+- Update to 0.4.0
+
+* Fri Dec 18 2009 Matthias Clasen <mclasen@redhat.com> - 0.4.0-0.1.20091218svn
+- 0.4 snapshot
 
 * Thu Nov 12 2009 Matthias Clasen <mclasen@redhat.com> - 0.3.2-1
 - Update to 0.3.2
