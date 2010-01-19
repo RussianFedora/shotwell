@@ -35,7 +35,7 @@ them, and share them with others.
 %build
 ./configure --prefix=/usr --disable-schemas-install
 sed -i -e 's/\\n/\n/g' configure.mk
-sed -i -e 's/^CFLAGS=.*$/CFLAGS=%{optflags}/' Makefile
+echo "CFLAGS=%{optflags}" >> configure.mk
 make %{?_smp_mflags}
 
 
