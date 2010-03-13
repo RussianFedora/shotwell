@@ -45,6 +45,8 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 export XDG_DISABLE_MAKEFILE_UPDATES=1
 make install DESTDIR=$RPM_BUILD_ROOT
 
+rm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/icon-theme.cache
+
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/shotwell.desktop
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/shotwell-viewer.desktop
 
