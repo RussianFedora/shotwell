@@ -1,5 +1,5 @@
 Name:           shotwell
-Version:        0.5.0
+Version:        0.5.2
 Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
@@ -95,6 +95,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed May 12 2010 Matthias Clasen <mclasen@redhat.com> - 0.5.2-1
+- Update to 0.5.2
+- Translation updates for Czech, Finnish, Greek, Ukrainian and Russian
+
 * Fri Mar 12 2010 Matthias Clasen <mclasen@redhat.com> - 0.5.0-1
 - Update to 0.5.0
 - Many new features, see http://www.yorba.org/shotwell/
