@@ -19,8 +19,8 @@ BuildRequires:  libxml2-devel
 BuildRequires:  dbus-glib-devel
 BuildRequires:  unique-devel
 BuildRequires:  libexif-devel
-BuildRequires:  gexiv2-devel
-BuildRequires:  libraw-devel
+BuildRequires:  libgexiv2-devel
+#BuildRequires:  LibRaw-devel
 BuildRequires:  libgphoto2-devel
 BuildRequires:  webkitgtk-devel
 BuildRequires:  libsoup-devel
