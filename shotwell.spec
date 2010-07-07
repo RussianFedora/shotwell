@@ -1,6 +1,6 @@
 Name:           shotwell
-Version:        0.5.2
-Release:        1%{?dist}
+Version:        0.5.90
+Release:        2%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -8,7 +8,7 @@ Group:          Applications/Multimedia
 # CC-BY-SA for some of the icons
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
-Source0:        http://www.yorba.org/download/shotwell/0.5/shotwell-%{version}.tar.bz2
+Source0:        http://www.yorba.org/download/shotwell/0.5/unstable/shotwell-%{version}.tar.bz2
 BuildRequires:  gtk2-devel
 BuildRequires:  GConf2-devel
 BuildRequires:  sqlite-devel
@@ -19,8 +19,12 @@ BuildRequires:  libxml2-devel
 BuildRequires:  dbus-glib-devel
 BuildRequires:  unique-devel
 BuildRequires:  libexif-devel
+BuildRequires:  gexiv2-devel
+BuildRequires:  libraw-devel
 BuildRequires:  libgphoto2-devel
 BuildRequires:  webkitgtk-devel
+BuildRequires:  libsoup-devel
+BuildRequires:  libusb-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 
@@ -40,7 +44,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 export XDG_DISABLE_MAKEFILE_UPDATES=1
 make install DESTDIR=$RPM_BUILD_ROOT
@@ -52,33 +55,23 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/shotwell-viewer.de
 
 %find_lang %{name}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post
+update-desktop-database &>/dev/null || :
+%gconf_schema_upgrade shotwell
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-update-desktop-database &> /dev/null || :
-export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/shotwell.schemas > /dev/null || :
 
 %pre
-if [ "$1" -gt 1 ]; then
-  export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/shotwell.schemas > /dev/null || :
-fi
+%gconf_schema_prepare shotwell
 
 %preun
-if [ "$1" -eq 0 ]; then
-  export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/shotwell.schemas > /dev/null || :
-fi
+%gconf_schema_remove shotwell
 
 %postun
+update-desktop-database &> /dev/null || :
 if [ $1 -eq 0 ] ; then
   touch --no-create %{_datadir}/icons/hicolor &>/dev/null
   gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 fi
-update-desktop-database &> /dev/null || :
 
 %posttrans
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
@@ -95,6 +88,13 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Jul  7 2010 Matthias Clasen <mclasen@redhat.com> - 0.5.90-2
+- Rebuild against newer webkitgtk
+
+* Wed May 26 2010 Matthias Clasen <mclasen@redhat.com> - 0.5.90-1
+- Update to 0.5.90
+- Scriptlet updates
+
 * Wed May 12 2010 Matthias Clasen <mclasen@redhat.com> - 0.5.2-1
 - Update to 0.5.2
 - Translation updates for Czech, Finnish, Greek, Ukrainian and Russian
