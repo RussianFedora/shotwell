@@ -1,6 +1,6 @@
 Name:           shotwell
-Version:        0.6.1
-Release:        1.1%{?dist}
+Version:        0.7.1
+Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -8,7 +8,7 @@ Group:          Applications/Multimedia
 # CC-BY-SA for some of the icons
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
-Source0:        http://www.yorba.org/download/shotwell/0.6/shotwell-%{version}.tar.bz2
+Source0:        http://www.yorba.org/download/shotwell/0.7/shotwell-%{version}.tar.bz2
 BuildRequires:  gtk2-devel
 BuildRequires:  GConf2-devel
 BuildRequires:  sqlite-devel
