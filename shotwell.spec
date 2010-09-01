@@ -85,9 +85,13 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/applications/shotwell.desktop
 %{_datadir}/applications/shotwell-viewer.desktop
 %{_datadir}/icons/hicolor/scalable/apps/shotwell.svg
+%{_datadir}/gnome/help/shotwell
 
 
 %changelog
+* Wed Sep  1 2010 Matthias Clasen <mclasen@redhat.com> - 0.7.1-1
+- Update to 0.7.1
+
 * Fri Jul 13 2010 Mike McGrath <mmcgrath@redhat.com> - 0.6.1-1.1
 - Rebuilt to fix broken libwebkit-1.0.so.2 dep
 
