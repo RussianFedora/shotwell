@@ -1,5 +1,5 @@
 Name:           shotwell
-Version:        0.7.1
+Version:        0.7.2
 Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
@@ -89,6 +89,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Sep 13 2010 Matthias Clasen <mclasen@redhat.com> - 0.7.2-1
+- Update to 0.7.2
+
 * Wed Sep  1 2010 Matthias Clasen <mclasen@redhat.com> - 0.7.1-1
 - Update to 0.7.1
 
