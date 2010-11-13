@@ -20,7 +20,7 @@ BuildRequires:  dbus-glib-devel
 BuildRequires:  unique-devel
 BuildRequires:  libexif-devel
 BuildRequires:  libgexiv2-devel
-BuildRequires:  LibRaw-devel
+BuildRequires:  LibRaw-static
 BuildRequires:  libgphoto2-devel
 BuildRequires:  webkitgtk-devel
 BuildRequires:  libsoup-devel
