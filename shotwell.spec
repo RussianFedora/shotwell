@@ -1,6 +1,6 @@
 Name:           shotwell
-Version:        0.7.3
-Release:        0.1.20101015svn2301%{?dist}
+Version:        0.8.0
+Release:        1%{?dist}
 Summary:        A photo organizer for the GNOME desktop
 
 Group:          Applications/Multimedia
@@ -8,7 +8,7 @@ Group:          Applications/Multimedia
 # CC-BY-SA for some of the icons
 License:        LGPLv2+ and CC-BY-SA
 URL:            http://www.yorba.org/shotwell/
-Source0:        http://www.yorba.org/download/shotwell/0.7/shotwell-20101015svn2301.tar.bz2
+Source0:        http://www.yorba.org/download/shotwell/0.7/shotwell-%{version}.tar.bz2
 BuildRequires:  gtk2-devel
 BuildRequires:  GConf2-devel
 BuildRequires:  sqlite-devel
@@ -28,8 +28,8 @@ BuildRequires:  libusb-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  gettext
 BuildRequires:  json-glib-devel
-BuildRequires:	gstreamer-plugins-base-devel
-BuildRequires:	gstreamer-devel
+BuildRequires:  gstreamer-plugins-base-devel
+BuildRequires:  gstreamer-devel
 
 %description
 Shotwell is a new open source photo organizer designed for the GNOME desktop
@@ -37,12 +37,13 @@ environment. It allows you to import photos from your camera, view and edit
 them, and share them with others.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 %build
 ./configure --prefix=/usr --disable-schemas-install --assume-pkgs
 sed -i -e 's/\\n/\n/g' configure.mk
 sed -i -e 's/^CFLAGS=.*$/CFLAGS=%{optflags}/' Makefile
+sed -i -e 's!закгрузку!загрузку!g' po/ru.po
 make %{?_smp_mflags}
 
 
@@ -88,10 +89,14 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/applications/shotwell.desktop
 %{_datadir}/applications/shotwell-viewer.desktop
 %{_datadir}/icons/hicolor/scalable/apps/shotwell.svg
+%{_datadir}/icons/hicolor/*/apps/shotwell.svg
 %{_datadir}/gnome/help/shotwell
 
 
 %changelog
+* Mon Dec 24 2010 Arkady L. Shane <ashejn@yandex-team.ru> - 0.8.0-1
+- update to 0.8.0
+
 * Mon Oct 18 2010 Arkady L. Shane <ashejn@yandex-team.ru> - 0.7.3-0.1.20101015svn2301
 - last svn snapshot with Yandex.Fotki support (http://www.ioremap.net/node/474)
 
